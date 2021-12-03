@@ -1,5 +1,5 @@
 """
-WSGI config for drugdata project.
+WSGI config for intexdrug project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'drugdata.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'intexdrug.settings')
 
 application = get_wsgi_application()
