@@ -4,6 +4,32 @@
 {% endcomment %}
 {% block content %}
 
-    <p>Drug</p>
+    <div class="search">
+        <form class="form-inline my-2 my-lg-0" method="post" action="{% url 'filter_drug' %}">
+            {% csrf_token %}
+            <input class="form-control mr-sm-2" id="search" name="search" type="search" placeholder="Search" aria-label="Search">
+            <input type="checkbox" id="is_opioid" name="is_opioid" class="space">
+            <label for="is_opioid">Is an Opioid</label>
+            <button class="btn btn-outline-success my-2 my-sm-0 space" type="submit">Search</button>
+        </form>
+    </div>
+
+    <div class="card_grid">
+    {% for drug in drugs %}
+        <div class="card">
+            <div class="card_container">
+            <h4><b>{{drug.drug_name}}</b></h4>
+            {% if drug.is_opioid%}
+                <input type="checkbox" id="opioid" name="opioid" disabled="disabled" checked>
+                <label for="opioid">Is an Opioid</label><br>
+            {% endif %}
+            {% if not drug.is_opioid %}
+                <input type="checkbox" id="opioid" name="opioid" disabled="disabled">
+                <label for="opioid">Is an Opioid</label><br>
+            {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+    </div>
 
 {% endblock %}

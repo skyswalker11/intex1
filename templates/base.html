@@ -19,45 +19,46 @@
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
       <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
       <title>Intex</title>
-      <link rel="icon" type="image/x-icon" href="{% static 'img/bluepill.png' %}">
+      <link rel="icon" type="image/x-icon" href="{% static 'img/pillfavicon.png' %}">
   </head>
+
   <body style="font-family: 'Lato', sans-serif;">
     {% comment %}Bootstrap Navbar {% endcomment %}
     <div style="font-family: 'Lato', sans-serif;font-family: 'Montserrat', sans-serif;">
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #4169E1;" >
-      <div>
-        <a class="navbar-brand" href="#">
-          <img src="{% static 'img/whitepill.png' %}" width="30" height="30" alt="">
-        </a>
-        <a class="navbar-brand" href="#">Intex</a>
-      </div>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Search</a>
-          </li>
-          <li class="nav-item dropdown active">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Analysis
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">First</a>
-              <a class="dropdown-item" href="#">Second</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Third</a>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </div>
+      <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #4169E1;" >
+        <div>
+          <a class="navbar-brand" href="{% url 'index' %}">
+            <img src="{% static 'img/whitepill.png' %}" width="30" height="30" alt="">
+          </a>
+          <a class="navbar-brand" href="#">Intex</a>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'prescriber' %}">Perscribers</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'drug' %}">Substances</a>
+            </li>
+            <li class="nav-item dropdown active">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Analysis
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">First</a>
+                <a class="dropdown-item" href="#">Second</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Third</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
     {% comment %}Bootstrap Navbar {% endcomment %}
 
     {% block content %}

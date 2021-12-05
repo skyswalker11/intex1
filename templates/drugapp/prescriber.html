@@ -4,6 +4,12 @@
 {% endcomment %}
 {% block content %}
 
-    <p>prescriber</p>
+{% for prescriber in prescribers %}
+<div class="container" style="color:blue">        
+    <p>{{prescriber.last_name}}, </p>
+    <p>{{prescriber.first_name}}</p>
+</div>
+
+{% endfor %}
 
 {% endblock %}
