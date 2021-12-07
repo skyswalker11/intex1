@@ -269,24 +269,35 @@ def createprescriberPageView(request) :
         return render(request, 'drugapp/createPrescriber.html', context)
 
 
-def editprescriberPageView(request,npi) :
+def editprescriberPageView(request) :
 
-    prescriber = Prescriber.objects.get(npi=npi)
-    triples = prescriber.triple_set.all()
+    if request.method == 'POST' : 
+        npi = request.POST['npi']
+        prescriber = Prescriber.objects.get(npi=npi)
 
-    context = {
-        "prescriber": prescriber,
-        "triples": triples,
-    }
+        context = {
+            "prescriber": prescriber,
+        }
 
-    return render(request, 'drugapp/editprescriber.html', context)
+        return render(request, 'drugapp/editprescriber.html', context)
+
+    else:
+        prescribers = Prescriber.objects.all()[:1000]
+        states = State.objects.all()
+
+        context = {
+            "prescribers": prescribers,
+            "states": states,
+        }
+
+        return render(request, 'drugapp/prescriber.html', context)
+
 
 
 def deleteprescriberPageView(request):
 
     if request.method == 'POST' : 
         npi = request.POST['npi']
-        print(npi)
         instance = Prescriber.objects.get(npi=npi)
         instance.delete()
 
@@ -299,3 +310,7 @@ def deleteprescriberPageView(request):
     }
 
     return render(request, 'drugapp/prescriber.html', context)
+
+
+def prescriptionsPageView(request):
+    return render(request, 'drugapp/prescriptions.html')
