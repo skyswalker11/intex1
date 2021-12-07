@@ -11,7 +11,7 @@ def indexPageView(request) :
 def analysis1PageView(request) :
     
     con = psycopg2.connect(database='intex_operational', user='postgres',
-        password='admin')
+        password='bionicle25')
 
     with con:
         cur = con.cursor()
@@ -62,7 +62,7 @@ def analysis1PageView(request) :
 def analysis2PageView(request) :
     
     con = psycopg2.connect(database='intex_operational', user='postgres',
-        password='admin')
+        password='bionicle25')
 
     with con:
         cur = con.cursor()
