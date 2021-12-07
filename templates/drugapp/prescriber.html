@@ -4,26 +4,16 @@
 {% endcomment %}
 {% block content %}
 
-<div class="search">
-    <form class="form-inline my-2 my-lg-0" method="post" action="{% url 'filter_drug' %}">
-        {% csrf_token %}
-        <input class="form-control mr-sm-2" id="search" name="search" type="search" placeholder="Search" aria-label="Search">
-        <input type="checkbox" id="is_opioid" name="is_opioid" class="space">
-        <label for="is_opioid">Is an Opioid</label>
-        <button class="btn btn-outline-success my-2 my-sm-0 space" type="submit">Search</button>
-    </form>
-</div>
-
 <div class="card_grid">
-{% for prescriber in prescribers %}
-    <div class="card container">
-        <div class="card_container">
-        <h4><a href="{% url 'prescriber_details' npi=prescriber.npi %}"><b>{{prescriber}}</b></a></h4>
-        <p>{{prescriber.specialty}}</p>
-        <p>{{prescriber.credentials}}</p>
+    {% for prescriber in prescribers %}
+        <div class="card">
+            <div class="card_container">
+                <h4 class="card_title"><a href="{% url 'prescriber_details' npi=prescriber.npi %}"><b>{{prescriber}}</b></a></h4>
+                <p class="card_paragaph"><b>Specialty:</b> {{prescriber.specialty}}</p>
+                <p class="card_paragaph"><b>Credentials:</b> {{prescriber.credentials}}</p>
+            </div>
         </div>
-    </div>
-{% endfor %}
+    {% endfor %}
 </div>
 
 {% endblock %}

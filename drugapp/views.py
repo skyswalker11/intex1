@@ -8,29 +8,26 @@ def indexPageView(request) :
 
 
 def drugPageView(request) :
-    drugs = Drug.objects.all()
 
-    context = {
-        "drugs": drugs,
-    }
-    return render(request, 'drugapp/drug.html', context)
-
-
-def filterDrugPageView(request):
-
+    #Search Functionality
     if request.method == 'POST' :
-        drugName = request.POST.get('search','off')
-        isOpioid  = "is_opioid" in request.POST
+        drugName = request.POST.get('search','off').upper()
+        filter = request.POST.get('filter')
 
-        if isOpioid == True and drugName != "":
-           drugs =  Drug.objects.filter(is_opioid=True,drug_name__contains=drugName)
-
-        elif isOpioid == True and drugName == "":
-            drugs = Drug.objects.filter(is_opioid=True)
-        elif isOpioid == False and drugName != "":
-            drugs = Drug.objects.filter(drug_name__contains=drugName)
-        else:
-            return drugPageView(request)
+        if drugName != "":
+            if filter == 'opioid':
+                drugs = Drug.objects.filter(drug_name__contains=drugName,is_opioid=True)
+            elif filter == 'non_opioid':
+                drugs = Drug.objects.filter(drug_name__contains=drugName,is_opioid=False)
+            else:   
+                drugs =  Drug.objects.filter(drug_name__contains=drugName)
+        else :
+            if filter == 'opioid':
+                drugs = Drug.objects.filter(is_opioid=True)
+            elif filter == 'non_opioid':
+                drugs = Drug.objects.filter(is_opioid=False)
+            else:   
+                drugs =  Drug.objects.all()
 
         context = {
             "drugs": drugs,
@@ -38,8 +35,15 @@ def filterDrugPageView(request):
 
         return render(request, 'drugapp/drug.html', context)
 
+    #Default view
     else:
-        return drugPageView(request)
+        drugs = Drug.objects.all()
+
+        context = {
+            "drugs": drugs,
+        }
+        return render(request, 'drugapp/drug.html', context)
+
 
 def drugdetailsPageView(request,drug_id) :
     drug = Drug.objects.get(id=drug_id)
@@ -82,4 +86,5 @@ def prescriberdetailsPageView(request,npi) :
         "prescriber": prescriber,
         "triples":triples
     }
+    
     return render(request, 'drugapp/prescriberdetails.html',context)

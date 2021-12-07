@@ -16,13 +16,13 @@
 
 /* Cards */
 .card {
-/* Add shadows to create the "card" effect */
+  /* Add shadows to create the "card" effect */
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
   border-radius: 5px; /* 5px rounded corners */
   margin:10px;
-}
-
+  }
+  
 /* On mouse-over, add a deeper shadow */
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
@@ -32,6 +32,16 @@
   padding: 2px 16px;
   padding-top: 10px;
 }
+
+.card_paragaph {
+  padding:0px;
+  margin:0px;
+}
+
+.card_title {
+  margin-bottom:1px;
+}
+
 
 .card_grid {
   display: grid;
@@ -45,7 +55,7 @@
 }
 
 .space {
-  margin:10px;
+  margin-left:5px;
 }
 
 

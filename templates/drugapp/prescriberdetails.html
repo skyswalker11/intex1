@@ -4,10 +4,30 @@
 {% endcomment %}
 {% block content %}
 
-    <p>{{prescriber}}</p>
+    <div class="detail_header">
+        {% if prescriber.gender == 'F'%}
+            <img src="{% static 'img/profile_female.png' %}">
+        {% endif %}
 
-    {% for triple in triples %}
-        <p>{{triple}}</p>
-    {% endfor %}
+        {% if prescriber.gender == 'M'%}
+            <img src="{% static 'img/profile_male.png' %}">
+        {% endif %}
 
+        <h4 class="card_title"><a href="#"><b>{{prescriber}}</b></a></h4>
+        <p class="card_paragaph"><b>Specialty:</b> {{prescriber.specialty}}</p>
+        <p class="card_paragaph"><b>Credentials:</b> {{prescriber.credentials}}</p>
+    </div>
+
+    <br>
+    <h4><b>Top Prescriptions:</b></h4>
+    <div class="card_grid">
+        {% for triple in triples %}
+            <div class="card">
+                <div class="card_container">
+                    <h4 class="card_title"><a href="{% url 'drug_details' drug_id=triple.drug_id.id %}"><b>{{triple.drug_id}}</b></a></h4>
+                    <p><b>Quantity: </b>{{triple.quantity}}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}

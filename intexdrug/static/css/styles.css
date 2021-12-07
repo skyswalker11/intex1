@@ -33,6 +33,16 @@ margin:10px;
   padding-top: 10px;
 }
 
+.card_paragaph {
+  padding:0px;
+  margin:0px;
+}
+
+.card_title {
+  margin-bottom:1px;
+}
+
+
 .card_grid {
   display: grid;
   grid-template-columns: auto;
@@ -45,7 +55,13 @@ margin:10px;
 }
 
 .space {
-  margin:10px;
+  margin-right:5px;
+}
+
+.detail_header {
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 

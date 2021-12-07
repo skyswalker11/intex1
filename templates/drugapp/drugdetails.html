@@ -4,24 +4,27 @@
 {% endcomment %}
 {% block content %}
 
-    <div class="card_grid">
-        <div class="card" >
-            <div class="card_container">
-            <h4><a href="{% url 'drug_details' drug_id=drug.id %}"><b>{{drug.drug_name}}</b></a></h4>
-            {% if drug.is_opioid%}
-                <input type="checkbox" id="opioid" name="opioid" disabled="disabled" checked>
-                <label for="opioid">Is an Opioid</label><br>
-            {% endif %}
-            {% if not drug.is_opioid %}
-                <input type="checkbox" id="opioid" name="opioid" disabled="disabled">
-                <label for="opioid">Is an Opioid</label><br>
-            {% endif %}
-            </div>
-        </div>
+    <div class="detail_header">
+        <h4><a href="#"><b>{{drug.drug_name}}</b></a></h4>
+        {% if drug.is_opioid%}
+            <input type="checkbox" id="opioid" name="opioid" disabled="disabled" checked>
+            <label for="opioid">Is an Opioid</label><br>
+        {% endif %}
+        {% if not drug.is_opioid %}
+            <input type="checkbox" id="opioid" name="opioid" disabled="disabled">
+            <label for="opioid">Is an Opioid</label><br>
+        {% endif %}
     </div>
 
-    {% for triple in triples %}
-        <p>{{triple}}</p>
-    {% endfor %}
-
+    <h4><b>Top Prescribers:</b></h4>
+    <div class="card_grid">
+        {% for triple in triples %}
+            <div class="card">
+                <div class="card_container">
+                    <h4 class="card_title"><a href="{% url 'prescriber_details' npi=triple.npi.npi %}"><b>{{triple.npi}}</b></a></h4>
+                    <p><b>Quantity: </b>{{triple.quantity}}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}

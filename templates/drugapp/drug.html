@@ -5,12 +5,18 @@
 {% block content %}
 
     <div class="search">
-        <form class="form-inline my-2 my-lg-0" method="post" action="{% url 'filter_drug' %}">
+        <form class="form-inline my-2 my-lg-0" method="post" action="{% url 'drug' %}">
             {% csrf_token %}
-            <input class="form-control mr-sm-2" id="search" name="search" type="search" placeholder="Search" aria-label="Search">
-            <input type="checkbox" id="is_opioid" name="is_opioid" class="space">
-            <label for="is_opioid">Is an Opioid</label>
+            <input class="form-control mr-sm-2 space" id="search" name="search" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0 space" type="submit">Search</button>
+
+            <!-- Radio button group-->
+            <input class= "space" type="radio" id="all" name="filter" value="all" checked>
+            <label for="all">All Substances</label><br>
+            <input class="space" type="radio" id="non_opioid" name="filter" value="non_opioid">
+            <label for="non_opioid">Non-Opioid</label><br>
+            <input class="space" type="radio" id="opioid" name="filter" value="opioid">
+            <label for="opioid">Opioid</label> 
         </form>
     </div>
 
@@ -18,15 +24,15 @@
     {% for drug in drugs %}
         <div class="card" >
             <div class="card_container">
-            <h4><a href="{% url 'drug_details' drug_id=drug.id %}"><b>{{drug.drug_name}}</b></a></h4>
-            {% if drug.is_opioid%}
-                <input type="checkbox" id="opioid" name="opioid" disabled="disabled" checked>
-                <label for="opioid">Is an Opioid</label><br>
-            {% endif %}
-            {% if not drug.is_opioid %}
-                <input type="checkbox" id="opioid" name="opioid" disabled="disabled">
-                <label for="opioid">Is an Opioid</label><br>
-            {% endif %}
+                <h4 class="card_title"><a href="{% url 'drug_details' drug_id=drug.id %}"><b>{{drug.drug_name}}</b></a></h4>
+                {% if drug.is_opioid%}
+                    <input type="checkbox" id="opioid" name="opioid" disabled="disabled" checked>
+                    <label for="opioid">Is an Opioid</label><br>
+                {% endif %}
+                {% if not drug.is_opioid %}
+                    <input type="checkbox" id="opioid" name="opioid" disabled="disabled">
+                    <label for="opioid">Is an Opioid</label><br>
+                {% endif %}
             </div>
         </div>
     {% endfor %}
