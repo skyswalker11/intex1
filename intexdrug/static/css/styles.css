@@ -99,8 +99,27 @@ margin:10px;
   padding: 12px;
 }
 
+/* button */ 
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
   background-color: #1d94d8 !important;
+}
+
+/*footer*/
+.footer {
+  position: absolute; 
+  height: 50px; 
+  left: 0; 
+  bottom: 0; 
+  width: 100%; 
+  background-color: #1d94d8;
+  color: white; 
+  text-align: center;
+  overflow: hidden;   
+}
+
+.html{
+  position: relative;
+  min-height: 100%; 
 }
 
 /* Mobile Styles */
