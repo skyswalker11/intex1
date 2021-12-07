@@ -5,6 +5,7 @@
 {% block content %}
 
     <form action="{% url 'create_prescriber' %}" method="post" class="search">
+        {% csrf_token %}
         <label for="npi"><b>NPI:</b></label>
         <input type="text" id="npi" name="npi"><br>
 
@@ -13,22 +14,21 @@
         <label for="lname"><b>Last Name:</b></label>
         <input type="text" id="lname" name="lname"><br>
         
-        <input class="space" type="radio" id="female" name="gender" value="female" selected>
-        <label class="space" for="female"><b>Female</b></label><br>
-        <input class="space" type="radio" id="male" name="gender" value="male">
-        <label class="space" for="male"><b>Male</b></label><br>
+        <input class="space" type="radio" id="F" name="gender" value="F" selected>
+        <label class="space" for="F"><b>Female</b></label><br>
+        <input class="space" type="radio" id="M" name="gender" value="M">
+        <label class="space" for="M"><b>Male</b></label><br>
 
         
         <label class="space" for="state">State/Territory:</label>
         <select class="space" name="state" id="state">
-            <option value="all" selected>All</option>
             {% for state in states %}
-            <option value={{state.state}}>{{state.state}}</option>
+                <option value="{{state.state_abbrev}}">{{state.state}}</option>
             {% endfor %}
         </select><br>
 
-        <label for="credenditals"><b>Credentials:</b></label>
-        <input type="text" id="credenditals" name="credentials"><br>
+        <label for="credentials"><b>Credentials:</b></label>
+        <input type="text" id="credentials" name="credentials"><br>
         <label for="specialty"><b>Specialty:</b></label>
         <input type="text" id="specialty" name="specialty"><br>
 
@@ -37,8 +37,8 @@
         <input class="space" type="radio" id="opi_n" name="opiate" value="n">
         <label class="space" for="opi_n"><b>Does not Prescribe Opioids</b></label><br>
 
-        <label for="perscriptions"><b>Total Prescriptions:</b></label>
-        <input type="text" id="perscriptions" name="perscriptions"><br>
+        <label for="prescriptions"><b>Total Prescriptions:</b></label>
+        <input type="text" id="prescriptions" name="prescriptions"><br>
         <button class="btn btn-primary my-2 my-sm-0 space" type="submit">Create Prescriber</button>
     </form>  
 
