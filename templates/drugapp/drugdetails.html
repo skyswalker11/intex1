@@ -6,6 +6,7 @@
 
     <div class="detail_header">
         <h4><a href="#"><b>{{drug.drug_name}}</b></a></h4>
+        <p><b>Total Prescriptions:</b> {{sum.quantity__sum}}</p>
         {% if drug.is_opioid%}
             <input type="checkbox" id="opioid" name="opioid" disabled="disabled" checked>
             <label for="opioid">Is an Opioid</label><br>

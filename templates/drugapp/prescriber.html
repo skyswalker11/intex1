@@ -4,10 +4,10 @@
 {% endcomment %}
 {% block content %}
 
-<div class="search">
-    <form class="form-inline my-2 my-lg-0" method="post" action="{% url 'prescriber' %}">
+<div class="search_header search">
+    <form class="form-inline my-2 my-lg-0" class="search" method="post" action="{% url 'prescriber' %}">
         {% csrf_token %}
-        <input class="form-control mr-sm-2 space" id="search" name="search" type="search" placeholder="Search" aria-label="Search">
+        <input class="form-control mr-sm-2 search" id="search" name="search" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-primary my-2 my-sm-0 space" type="submit">Search</button>
 
         <label class="space" for="state">State/Territory:</label>
@@ -26,6 +26,7 @@
         <input class="space" type="radio" id="male" name="filter" value="male">
         <label class="space" for="male">Male</label><br>
     </form>
+    <button type="button" class="btn btn-primary my-2 my-sm-0 create_button" onclick="window.location.href='{% url 'create_prescriber' %}'">Create Prescriber</button>  
 </div>
 
 <div class="card_grid">
