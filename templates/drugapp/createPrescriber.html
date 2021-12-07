@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% comment %} 
+{% endcomment %}
+{% block content %}
+
+    <form action="{% url 'create_prescriber' %}" method="post" class="search">
+        <label for="npi"><b>NPI:</b></label>
+        <input type="text" id="npi" name="npi"><br>
+
+        <label for="fname"><b>First Name:</b></label>
+        <input type="text" id="fname" name="fname"><br>
+        <label for="lname"><b>Last Name:</b></label>
+        <input type="text" id="lname" name="lname"><br>
+        
+        <input class="space" type="radio" id="female" name="gender" value="female" selected>
+        <label class="space" for="female"><b>Female</b></label><br>
+        <input class="space" type="radio" id="male" name="gender" value="male">
+        <label class="space" for="male"><b>Male</b></label><br>
+
+        
+        <label class="space" for="state">State/Territory:</label>
+        <select class="space" name="state" id="state">
+            <option value="all" selected>All</option>
+            {% for state in states %}
+            <option value={{state.state}}>{{state.state}}</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="credenditals"><b>Credentials:</b></label>
+        <input type="text" id="credenditals" name="credentials"><br>
+        <label for="specialty"><b>Specialty:</b></label>
+        <input type="text" id="specialty" name="specialty"><br>
+
+        <input class="space" type="radio" id="opi_y" name="opiate" value="y" selected>
+        <label class="space" for="opi_y"><b>Prescribes Opioids</b></label><br>
+        <input class="space" type="radio" id="opi_n" name="opiate" value="n">
+        <label class="space" for="opi_n"><b>Does not Prescribe Opioids</b></label><br>
+
+        <label for="perscriptions"><b>Total Prescriptions:</b></label>
+        <input type="text" id="perscriptions" name="perscriptions"><br>
+        <button class="btn btn-primary my-2 my-sm-0 space" type="submit">Create Prescriber</button>
+    </form>  
+
+{% endblock %}

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.db.models import Q
+from django.db.models import Q, Sum
 from .models import Drug, Prescriber, Triple, State
 import psycopg2
 
@@ -151,10 +151,12 @@ def drugPageView(request) :
 def drugdetailsPageView(request,drug_id):
     drug = Drug.objects.get(id=drug_id)
     triples = Triple.objects.filter(drug_id=drug_id).order_by('-quantity')[:10]
+    sum = Triple.objects.filter(drug_id=drug_id).aggregate(Sum('quantity'))
 
     context = {
         "drug": drug,
-        "triples":triples
+        "triples":triples,
+        "sum": sum
     }
     return render(request, 'drugapp/drugdetails.html', context)
 
@@ -238,20 +240,6 @@ def prescriberPageView(request) :
         return render(request, 'drugapp/prescriber.html', context)
 
 
-
-
-def editprescriberPageView(request,npi) :
-
-    prescriber = Prescriber.objects.get(npi=npi)
-    triples = prescriber.triple_set.all()
-
-    context = {
-        "prescriber": prescriber,
-        "triples": triples,
-    }
-
-    return render(request, 'drugapp/editprescriber.html', context)
-
 def prescriberdetailsPageView(request,npi) :
     prescriber = Prescriber.objects.get(npi=npi)
     triples = Triple.objects.filter(npi=npi).order_by('-quantity')[:10]
@@ -260,5 +248,69 @@ def prescriberdetailsPageView(request,npi) :
         "prescriber": prescriber,
         "triples":triples
     }
-    
+
     return render(request, 'drugapp/prescriberdetails.html',context)
+
+
+def createprescriberPageView(request) :
+
+
+    if request.method == 'POST' : 
+
+        return prescriberdetailsPageView(request)
+    
+    else:
+        states = State.objects.all()
+
+        context = {
+            "states": states,
+        }
+
+        return render(request, 'drugapp/createPrescriber.html', context)
+
+
+def editprescriberPageView(request) :
+
+    if request.method == 'POST' : 
+        npi = request.POST['npi']
+        prescriber = Prescriber.objects.get(npi=npi)
+
+        context = {
+            "prescriber": prescriber,
+        }
+
+        return render(request, 'drugapp/editprescriber.html', context)
+
+    else:
+        prescribers = Prescriber.objects.all()[:1000]
+        states = State.objects.all()
+
+        context = {
+            "prescribers": prescribers,
+            "states": states,
+        }
+
+        return render(request, 'drugapp/prescriber.html', context)
+
+
+
+def deleteprescriberPageView(request):
+
+    if request.method == 'POST' : 
+        npi = request.POST['npi']
+        instance = Prescriber.objects.get(npi=npi)
+        instance.delete()
+
+    prescribers =  Prescriber.objects.all()[:1000]
+    states = State.objects.all()
+
+    context = {
+        "prescribers": prescribers,
+        "states": states,
+    }
+
+    return render(request, 'drugapp/prescriber.html', context)
+
+
+def prescriptionsPageView(request):
+    return render(request, 'drugapp/prescriptions.html')

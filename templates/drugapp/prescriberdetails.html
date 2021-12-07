@@ -15,8 +15,30 @@
 
         <h4 class="card_title"><a href="#"><b>{{prescriber}}</b></a></h4>
         <p class="card_paragaph"><b>Specialty:</b> {{prescriber.specialty}}</p>
-        <p class="card_paragaph"><b>Credentials:</b> {{prescriber.credentials}}</p>
+        <p class="card_paragaph"><b>Credentials:</b> {{prescriber.credentials}}</p><br>
+
+        <div style="display:flex;">
+            <form method="post" action ="{% url 'prescriptions' %}">
+                {% csrf_token %}
+                <input type="hidden" value="{{prescriber.npi}}" name="npi">
+                <button type="submit" class="btn btn-primary my-2 my-sm-0 create_button">Edit Prescriptions</button>
+            </form><br>
+
+            <form method="post" action ="{% url 'edit_prescriber' %}">
+                {% csrf_token %}
+                <input type="hidden" value="{{prescriber.npi}}" name="npi">
+                <button type="submit" class="btn btn-primary my-2 my-sm-0 create_button">Edit Prescriber</button>
+            </form><br>
+
+            <form method="post" action ="{% url 'delete_prescriber' %}">
+                {% csrf_token %}
+                <input type="hidden" value="{{prescriber.npi}}" name="npi">
+                <button type="submit" class="btn btn-primary my-2 my-sm-0 create_button">Delete Prescriber</button>
+            </form>
+        </div>
+          
     </div>
+
 
     <br>
     <h4><b>Top Prescriptions:</b></h4>

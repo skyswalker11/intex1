@@ -54,6 +54,17 @@ margin:10px;
   margin:3px;
 }
 
+.search_header {
+  display:flex;
+  width:100%;
+  justify-content: space-between;
+}
+
+.create_button{
+  margin-top:3px;
+  margin-right:7px;
+}
+
 .space {
   margin-left:5px;
   margin-right:5px;
