@@ -4,6 +4,30 @@
 {% endcomment %}
 {% block content %}
 
+<div class="search">
+    <form class="form-inline my-2 my-lg-0" method="post" action="{% url 'prescriber' %}">
+        {% csrf_token %}
+        <input class="form-control mr-sm-2 space" id="search" name="search" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-primary my-2 my-sm-0 space" type="submit">Search</button>
+
+        <label class="space" for="state">State/Territory:</label>
+        <select class="space" name="state" id="state">
+            <option value="all" selected>All</option>
+            {% for state in states %}
+            <option value={{state.state}}>{{state.state}}</option>
+            {% endfor %}
+        </select> 
+
+        <!-- Radio button group-->
+        <input class="space" type="radio" id="all" name="filter" value="all" checked>
+        <label class="space" for="all">All genders</label><br>
+        <input class= "space" type="radio" id="female" name="filter" value="female">
+        <label class="space" for="female">Female</label><br>
+        <input class="space" type="radio" id="male" name="filter" value="male">
+        <label class="space" for="male">Male</label><br>
+    </form>
+</div>
+
 <div class="card_grid">
     {% for prescriber in prescribers %}
         <div class="card">
@@ -11,6 +35,7 @@
                 <h4 class="card_title"><a href="{% url 'prescriber_details' npi=prescriber.npi %}"><b>{{prescriber}}</b></a></h4>
                 <p class="card_paragaph"><b>Specialty:</b> {{prescriber.specialty}}</p>
                 <p class="card_paragaph"><b>Credentials:</b> {{prescriber.credentials}}</p>
+                <p class="card_paragaph"><b>State:</b> {{prescriber.state.state}}</p>
             </div>
         </div>
     {% endfor %}

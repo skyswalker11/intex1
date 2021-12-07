@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from .models import Drug, Prescriber, Triple
+from django.db.models import Q
+from .models import Drug, Prescriber, Triple, State
 import psycopg2
 
 # Create your views here.
@@ -113,16 +114,16 @@ def drugPageView(request) :
 
     #Search Functionality
     if request.method == 'POST' :
-        drugName = request.POST.get('search','off').upper()
+        search = request.POST.get('search')
         filter = request.POST.get('filter')
 
-        if drugName != "":
+        if search != "":
             if filter == 'opioid':
-                drugs = Drug.objects.filter(drug_name__contains=drugName,is_opioid=True)
+                drugs = Drug.objects.filter(drug_name__contains=search,is_opioid=True)
             elif filter == 'non_opioid':
-                drugs = Drug.objects.filter(drug_name__contains=drugName,is_opioid=False)
+                drugs = Drug.objects.filter(drug_name__contains=search,is_opioid=False)
             else:   
-                drugs =  Drug.objects.filter(drug_name__contains=drugName)
+                drugs =  Drug.objects.filter(drug_name__contains=search)
         else :
             if filter == 'opioid':
                 drugs = Drug.objects.filter(is_opioid=True)
@@ -147,7 +148,7 @@ def drugPageView(request) :
         return render(request, 'drugapp/drug.html', context)
 
 
-def drugdetailsPageView(request,drug_id) :
+def drugdetailsPageView(request,drug_id):
     drug = Drug.objects.get(id=drug_id)
     triples = Triple.objects.filter(drug_id=drug_id).order_by('-quantity')[:10]
 
@@ -159,13 +160,84 @@ def drugdetailsPageView(request,drug_id) :
 
 
 def prescriberPageView(request) :
-    prescribers = Prescriber.objects.all()
 
-    context = {
-        "prescribers": prescribers,
-    }
+    #Search Functionality
+    if request.method == 'POST' :
+        search = request.POST.get('search')
+        state = request.POST.get('state')
+        filter = request.POST.get('filter')
 
-    return render(request, 'drugapp/prescriber.html', context)
+        #Dumb filter, cant fiture out how to shrink this...
+        if state != 'all':
+            if search != "":
+                if filter == 'male':
+                    prescribers = Prescriber.objects.filter(Q(first_name__icontains=search) \
+                        | Q(last_name__icontains=search) | Q(credentials__icontains=search) \
+                        | Q(specialty__icontains=search), gender='M',state__state=state)[:1000]
+
+                elif filter == 'female':
+                    prescribers = Prescriber.objects.filter(Q(first_name__icontains=search) \
+                        | Q(last_name__icontains=search) | Q(credentials__icontains=search) \
+                        | Q(specialty__icontains=search), gender='F',state__state=state)[:1000]
+                else:   
+                    prescribers = Prescriber.objects.filter(Q(first_name__icontains=search) \
+                        | Q(last_name__icontains=search) | Q(credentials__icontains=search) \
+                        | Q(specialty__icontains=search),state__state=state)[:1000]
+            else :
+                if filter == 'male':
+                    prescribers = Prescriber.objects.filter(gender='M',state__state=state)[:1000]
+                elif filter == 'female':
+                    prescribers = Prescriber.objects.filter(gender='F',state__state=state)[:1000]
+                else:   
+                    prescribers =  Prescriber.objects.filter(state__state=state)[:1000]
+
+        else:
+            if search != "":
+                if filter == 'male':
+                    prescribers = Prescriber.objects.filter(Q(first_name__icontains=search) \
+                        | Q(last_name__icontains=search) | Q(credentials__icontains=search) \
+                        | Q(specialty__icontains=search), gender='M')[:1000]
+
+                elif filter == 'female':
+                    prescribers = Prescriber.objects.filter(Q(first_name__icontains=search) \
+                        | Q(last_name__icontains=search) | Q(credentials__icontains=search) \
+                        | Q(specialty__icontains=search), gender='F')[:1000]
+                else:   
+                    prescribers = Prescriber.objects.filter(Q(first_name__icontains=search) \
+                        | Q(last_name__icontains=search) | Q(credentials__icontains=search) \
+                        | Q(specialty__icontains=search))[:1000]
+            else :
+                if filter == 'male':
+                    prescribers = Prescriber.objects.filter(gender='M')[:1000]
+                elif filter == 'female':
+                    prescribers = Prescriber.objects.filter(gender='F')[:1000]
+                else:   
+                    prescribers =  Prescriber.objects.all()[:1000]
+
+                    
+            
+        states = State.objects.all()
+
+        context = {
+            "prescribers": prescribers,
+            "states": states,
+        }
+
+        return render(request, 'drugapp/prescriber.html', context)
+
+    #Default view
+    else:
+        prescribers = Prescriber.objects.all()[:1000]
+        states = State.objects.all()
+
+        context = {
+            "prescribers": prescribers,
+            "states": states,
+        }
+
+        return render(request, 'drugapp/prescriber.html', context)
+
+
 
 
 def editprescriberPageView(request,npi) :
