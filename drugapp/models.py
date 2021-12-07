@@ -33,7 +33,7 @@ class Prescriber(models.Model):
     state = models.ForeignKey('State', to_field="state_abbrev", db_column="state", null=False, on_delete=models.CASCADE)
     credentials = models.CharField(max_length=20)
     specialty = models.CharField(max_length=100,null=False)
-    is_opioid_prescriber = models.CharField(max_length=20,null=False)
+    is_opioid_prescriber = models.BooleanField(null=False)
     total_prescriptions = models.IntegerField(null=False)
     picture_path = models.ImageField(default="{{MEDIA_URL}}/photos/profile_male",upload_to="photos")
 

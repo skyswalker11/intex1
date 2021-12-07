@@ -14,15 +14,23 @@
         <label for="lname"><b>Last Name:</b></label>
         <input type="text" id="lname" name="lname"><br>
         
+
+
         <input class="space" type="radio" id="F" name="gender" value="F" selected>
         <label class="space" for="F"><b>Female</b></label><br>
         <input class="space" type="radio" id="M" name="gender" value="M">
         <label class="space" for="M"><b>Male</b></label><br>
-
-        
+  
         <label class="space" for="state">State/Territory:</label>
         <select class="space" name="state" id="state">
             {% for state in states %}
+            <option value={{state.state_abbrev}}>{{state.state}}</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="credendtials"><b>Credentials:</b></label>
+        <input type="text" id="credendtials" name="credendtials"><br>
+
                 <option value="{{state.state_abbrev}}">{{state.state}}</option>
             {% endfor %}
         </select><br>
