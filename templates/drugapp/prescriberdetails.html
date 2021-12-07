@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+{% comment %} 
+{% endcomment %}
+{% block content %}
+
+    <p>{{prescriber}}</p>
+
+    {% for triple in triples %}
+        <p>{{triple}}</p>
+    {% endfor %}
+
+{% endblock %}

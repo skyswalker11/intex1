@@ -35,6 +35,7 @@ class Prescriber(models.Model):
     specialty = models.CharField(max_length=100,null=False)
     is_opioid_prescriber = models.CharField(max_length=20,null=False)
     total_prescriptions = models.IntegerField(null=False)
+    picture_path = models.ImageField(default="{{MEDIA_URL}}/photos/profile_male",upload_to="photos")
 
     class Meta:
         db_table = "pd_prescriber"
@@ -51,4 +52,4 @@ class Triple(models.Model):
         db_table = "pd_prescriber_drug_triple"
 
     def __str__(self):
-        return("Test")
+        return(str(self.npi) + ": " + str(self.quantity))

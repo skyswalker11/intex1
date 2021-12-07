@@ -41,6 +41,16 @@ def filterDrugPageView(request):
     else:
         return drugPageView(request)
 
+def drugdetailsPageView(request,drug_id) :
+    drug = Drug.objects.get(id=drug_id)
+    triples = Triple.objects.filter(drug_id=drug_id).order_by('-quantity')[:10]
+
+    context = {
+        "drug": drug,
+        "triples":triples
+    }
+    return render(request, 'drugapp/drugdetails.html', context)
+
 
 def prescriberPageView(request) :
     prescribers = Prescriber.objects.all()
@@ -48,6 +58,7 @@ def prescriberPageView(request) :
     context = {
         "prescribers": prescribers,
     }
+
     return render(request, 'drugapp/prescriber.html', context)
 
 
@@ -62,3 +73,13 @@ def editprescriberPageView(request,npi) :
     }
 
     return render(request, 'drugapp/editprescriber.html', context)
+
+def prescriberdetailsPageView(request,npi) :
+    prescriber = Prescriber.objects.get(npi=npi)
+    triples = Triple.objects.filter(npi=npi).order_by('-quantity')[:10]
+
+    context = {
+        "prescriber": prescriber,
+        "triples":triples
+    }
+    return render(request, 'drugapp/prescriberdetails.html',context)
