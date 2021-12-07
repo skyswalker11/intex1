@@ -254,10 +254,29 @@ def prescriberdetailsPageView(request,npi) :
 
 def createprescriberPageView(request) :
 
-
     if request.method == 'POST' : 
+        npi = request.POST['npi']
+        fname = request.POST['fname']
+        lname = request.POST['lname']
+        gender = request.POST['gender']
+        state = request.POST['state']
+        thisState = State.objects.get(state_abbrev=state)
+        credendtials = request.POST['credendtials']
+        specialty = request.POST['specialty']
+        opiate = request.POST['opiate']
+        prescriptions = request.POST['prescriptions']
 
-        return prescriberdetailsPageView(request)
+        if opiate == 'y':
+            opiate = True
+        else :
+            opiate = False
+
+        instance = Prescriber(npi=npi,first_name=fname,last_name=lname,gender=gender,\
+            state=thisState,credentials=credendtials,specialty=specialty,is_opioid_prescriber=opiate,total_prescriptions=prescriptions)
+
+        instance.save()
+
+        return prescriberdetailsPageView(request,npi)
     
     else:
         states = State.objects.all()
@@ -274,9 +293,11 @@ def editprescriberPageView(request) :
     if request.method == 'POST' : 
         npi = request.POST['npi']
         prescriber = Prescriber.objects.get(npi=npi)
+        states = State.objects.all()
 
         context = {
             "prescriber": prescriber,
+            "states": states,
         }
 
         return render(request, 'drugapp/editprescriber.html', context)
@@ -287,6 +308,40 @@ def editprescriberPageView(request) :
 
         context = {
             "prescribers": prescribers,
+            "states": states,
+        }
+
+        return render(request, 'drugapp/prescriber.html', context)
+
+def putprescriberPageView(request):
+    if request.method == 'POST' : 
+        npi = request.POST['npi']
+        fname = request.POST['fname']
+        lname = request.POST['lname']
+        gender = request.POST['gender']
+        state = request.POST['state']
+        thisState = State.objects.get(state_abbrev=state)
+        credendtials = request.POST['credendtials']
+        specialty = request.POST['specialty']
+        opiate = request.POST['opiate']
+        prescriptions = request.POST['prescriptions']
+
+        if opiate == 'y':
+            opiate = True
+        else :
+            opiate = False
+
+        instance = Prescriber(npi=npi,first_name=fname,last_name=lname,gender=gender,\
+            state=thisState,credentials=credendtials,specialty=specialty,is_opioid_prescriber=opiate,total_prescriptions=prescriptions)
+
+        instance.save()
+
+        return prescriberdetailsPageView(request,npi)
+    
+    else:
+        states = State.objects.all()
+
+        context = {
             "states": states,
         }
 

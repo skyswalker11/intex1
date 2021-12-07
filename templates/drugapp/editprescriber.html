@@ -4,9 +4,68 @@
 {% endcomment %}
 {% block content %}
 
-<div class="container" style="color:blue">        
-    <p>{{prescriber.last_name}}, </p>
-    <p>{{prescriber.first_name}}</p>
-</div>
+    <form action="{% url 'put_prescriber' %}" method="post" class="search">
+        {% csrf_token %}
+        <label for="npi"><b>NPI:</b></label>
+        <input type="text" id="npi" name="npi" value="{{prescriber.npi}}" disabled><br>
+
+        <label for="fname"><b>First Name:</b></label>
+        <input type="text" id="fname" name="fname" value="{{prescriber.first_name}}"><br>
+        <label for="lname"><b>Last Name:</b></label>
+        <input type="text" id="lname" name="lname" value="{{prescriber.last_name}}"><br>
+        
+        {% if prescriber.gender == 'F' %}
+            <input class="space" type="radio" id="female" name="gender" value="F" checked>
+            <label class="space" for="female"><b>Female</b></label><br>
+            <input class="space" type="radio" id="male" name="gender" value="M">
+            <label class="space" for="male"><b>Male</b></label><br>
+        {% endif %}
+
+        {% if prescriber.gender == 'M' %}
+            <input class="space" type="radio" id="female" name="gender" value="F" >
+            <label class="space" for="female"><b>Female</b></label><br>
+            <input class="space" type="radio" id="male" name="gender" value="M" checked>
+            <label class="space" for="male"><b>Male</b></label><br>
+        {% endif %}
+
+        
+        <label class="space" for="state">State/Territory:</label>
+        <select class="space" name="state" id="state">
+            <option value="all" selected>All</option>
+            {% for state in states %}
+                {% if prescriber.state == state %}
+                    <option value={{state.state_abbrev}} selected>{{state.state}}</option>
+                {% endif %}
+                {% if prescriber.state != state %}
+                    <option value={{state.state_abbrev}}>{{state.state}}</option>
+                {% endif %}
+            {% endfor %}
+        </select><br>
+
+        <label for="credendtials"><b>Credentials:</b></label>
+        <input type="text" id="credendtials" name="credendtials" value="{{prescriber.credentials}}"><br>
+        <label for="specialty"><b>Specialty:</b></label>
+        <input type="text" id="specialty" name="specialty" value="{{prescriber.specialty}}"><br>
+
+        {% if prescriber.is_opioid_prescriber == True %}
+            <input class="space" type="radio" id="opi_y" name="opiate" value="y" checked>
+            <label class="space" for="opi_y"><b>Prescribes Opioids</b></label><br>
+            <input class="space" type="radio" id="opi_n" name="opiate" value="n">
+            <label class="space" for="opi_n"><b>Does not Prescribe Opioids</b></label><br>
+        {% endif %}
+
+    
+        {% if prescriber.is_opioid_prescriber == False %}
+            <input class="space" type="radio" id="opi_y" name="opiate" value="y">
+            <label class="space" for="opi_y"><b>Prescribes Opioids</b></label><br>
+            <input class="space" type="radio" id="opi_n" name="opiate" value="n" checked>
+            <label class="space" for="opi_n"><b>Does not Prescribe Opioids</b></label><br>
+        {% endif %}
+
+
+        <label for="prescriptions"><b>Total Prescriptions:</b></label>
+        <input type="text" id="prescriptions" name="prescriptions" value="{{prescriber.total_prescriptions}}"><br>
+        <button class="btn btn-primary my-2 my-sm-0 space" type="submit">Edit Prescriber</button>
+    </form>  
 
 {% endblock %}
