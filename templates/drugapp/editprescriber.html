@@ -6,8 +6,8 @@
 
     <form action="{% url 'put_prescriber' %}" method="post" class="search">
         {% csrf_token %}
-        <label for="npi"><b>NPI:</b></label>
-        <input type="text" id="npi" name="npi" value="{{prescriber.npi}}" disabled><br>
+        <label for="presciber_npi"><b>NPI:</b></label>
+        <input type="text" id="npi" name="prescriber_npi" value="{{prescriber.npi}}"><br>
 
         <label for="fname"><b>First Name:</b></label>
         <input type="text" id="fname" name="fname" value="{{prescriber.first_name}}"><br>
@@ -42,8 +42,8 @@
             {% endfor %}
         </select><br>
 
-        <label for="credendtials"><b>Credentials:</b></label>
-        <input type="text" id="credendtials" name="credendtials" value="{{prescriber.credentials}}"><br>
+        <label for="credentials"><b>Credentials:</b></label>
+        <input type="text" id="credentials" name="credentials" value="{{prescriber.credentials}}"><br>
         <label for="specialty"><b>Specialty:</b></label>
         <input type="text" id="specialty" name="specialty" value="{{prescriber.specialty}}"><br>
 

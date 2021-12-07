@@ -12,7 +12,7 @@ def indexPageView(request) :
 def analysis1PageView(request) :
     
     con = psycopg2.connect(database='intex_operational', user='postgres',
-        password='admin')
+        password='bionicle25')
 
     with con:
         cur = con.cursor()
@@ -64,7 +64,7 @@ def analysis1PageView(request) :
 def analysis2PageView(request) :
     
     con = psycopg2.connect(database='intex_operational', user='postgres',
-        password='admin')
+        password='bionicle25')
 
     with con:
         cur = con.cursor()
@@ -264,7 +264,7 @@ def createprescriberPageView(request) :
         gender = request.POST['gender']
         state = request.POST['state']
         thisState = State.objects.get(state_abbrev=state)
-        credendtials = request.POST['credendtials']
+        credentials = request.POST['credentials']
         specialty = request.POST['specialty']
         opiate = request.POST['opiate']
         prescriptions = request.POST['prescriptions']
@@ -275,7 +275,7 @@ def createprescriberPageView(request) :
             opiate = False
 
         instance = Prescriber(npi=npi,first_name=fname,last_name=lname,gender=gender,\
-            state=thisState,credentials=credendtials,specialty=specialty,is_opioid_prescriber=opiate,total_prescriptions=prescriptions)
+            state=thisState,credentials=credentials,specialty=specialty,is_opioid_prescriber=opiate,total_prescriptions=prescriptions)
 
         instance.save()
 
@@ -354,13 +354,13 @@ def editprescriberPageView(request) :
 
 def putprescriberPageView(request):
     if request.method == 'POST' : 
-        npi = request.POST['npi']
+        npi = request.POST['prescriber_npi']
         fname = request.POST['fname']
         lname = request.POST['lname']
         gender = request.POST['gender']
         state = request.POST['state']
         thisState = State.objects.get(state_abbrev=state)
-        credendtials = request.POST['credendtials']
+        credentials = request.POST['credentials']
         specialty = request.POST['specialty']
         opiate = request.POST['opiate']
         prescriptions = request.POST['prescriptions']
@@ -371,7 +371,7 @@ def putprescriberPageView(request):
             opiate = False
 
         instance = Prescriber(npi=npi,first_name=fname,last_name=lname,gender=gender,\
-            state=thisState,credentials=credendtials,specialty=specialty,is_opioid_prescriber=opiate,total_prescriptions=prescriptions)
+            state=thisState,credentials=credentials,specialty=specialty,is_opioid_prescriber=opiate,total_prescriptions=prescriptions)
 
         instance.save()
 
@@ -408,3 +408,6 @@ def deleteprescriberPageView(request):
 
 def prescriptionsPageView(request):
     return render(request, 'drugapp/prescriptions.html')
+
+def recomPageView(request) :
+    return render(request, 'drugapp/recom.html')

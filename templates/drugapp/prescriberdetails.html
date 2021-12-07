@@ -15,8 +15,14 @@
 
         <h4 class="card_title"><a href="#"><b>{{prescriber}}</b></a></h4>
         <p class="card_paragaph"><b>Specialty:</b> {{prescriber.specialty}}</p>
-        <p class="card_paragaph"><b>Credentials:</b> {{prescriber.credentials}}</p><br>
-
+        <p class="card_paragaph"><b>Credentials:</b> {{prescriber.credentials}}</p>
+        <p class="card_paragaph"><b>State:</b> {{prescriber.state}}</p>
+        <p class="card_paragaph"><b>Gender:</b> {{prescriber.gender}}</p>
+        {%if prescriber.is_opioid_prescriber == true%}
+            <p class="card_paragaph"><b>Prescribes Opioids</b></p>
+        {%else%}
+            <p class="card_paragaph"><b>Does Not Prescribe Opioids</b></p><br>
+        {% endif %}
         <div style="display:flex;">
             <form method="post" action ="{% url 'prescriptions' %}">
                 {% csrf_token %}
