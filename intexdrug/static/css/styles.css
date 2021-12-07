@@ -1,5 +1,17 @@
+/* NavBar*/
+.nav_text {
+  font-family: 'Lato', sans-serif;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Body */
+.body_text {
+  font-family: 'Lato', sans-serif;
+}
+
+/* Flex */
 .container {
-  display: flex; /* or inline-flex */
+  display: flex;
 }
 
 /* Cards */
@@ -16,11 +28,10 @@ margin:10px;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
-/* Add some padding inside the card container */
 .card_container {
   padding: 2px 16px;
+  padding-top: 10px;
 }
-
 
 .card_grid {
   display: grid;
@@ -28,6 +39,7 @@ margin:10px;
   grid-template-rows: auto; 
 }
 
+/* Search bar button */
 .search {
   margin:10px;
 }
