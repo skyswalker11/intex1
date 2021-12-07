@@ -3,45 +3,50 @@
 {% comment %} 
 {% endcomment %}
 {% block content %}
-    <h1 align="center">Prescription Analysis</h1>
-    <div class="search">
+<br>    
+<h1 style= "font-family:Montserrat;" align="center">Prescription Analysis</h1>
+<hr style="width:100%;text-align:center;background-color:black;height:1px;">
         <div>
             <div class='tableauPlaceholder' id='viz1638853355114' style='position: relative'><noscript><a href='#'><img alt='Dashboard 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;MN&#47;MNNZ89XY4&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='path' value='shared&#47;MNNZ89XY4' /> <param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;MN&#47;MNNZ89XY4&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1638853355114');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.40)+'px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.40)+'px';} else { vizElement.style.width='100%';vizElement.style.height='400px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>    <br><br>
         </div>
             <hr style="width:100%;text-align:center;background-color:black;height:1px;">
-    <h3>Sum of Opioids Prescribed by Each Prescriber:</h3>
+    <h3 align="center" style= "font-family:Montserrat;">Sum of Opioid Prescriptions by Each Prescriber:</h3>
 
-    <h5>   First Name, Last Name, Sum, NPI</h5>
-    <div class ="scrollbar">
-        {% for x in results %}
-                <div>
-                    <h6 class="card">{{x}}</h6>                    
-                </div>
-        {% endfor %}
+    <h5 align="center" style= "font-family:Montserrat;">(First Name, Last Name, Sum, NPI)</h5>
+    <div align="center">  
+        <div class ="scrollbar">
+            {% for x in results %}
+                    <div>
+                        <h6 class="card">{{x}}</h6>                    
+                    </div>
+            {% endfor %}
+        </div>
     </div>
     <br><br>
     <hr style="width:100%;text-align:center;background-color:black;height:1px;">
-    <h3>Total Quantity of Drugs Prescriptions:</h3>
-    <h5>   Drug Name, Quantity</h5>
-
-    <div class ="scrollbar">
-        {% for x in results2 %}
-                <div>
-                    <h6 class="card">{{x}}</h6>                    
-                </div>
-        {% endfor %}
+    <h3 align="center" style= "font-family:Montserrat;">Total Quantity of Drug Prescriptions:</h3>
+    <h5 align="center" style= "font-family:Montserrat;">(Drug Name, Quantity)</h5>
+    <div align="center">
+        <div class ="scrollbar">
+            {% for x in results2 %}
+                    <div>
+                        <h6 class="card">{{x}}</h6>                    
+                    </div>
+            {% endfor %}
+        </div>
     </div>
     <hr style="width:100%;text-align:center;background-color:black;height:1px;">
-    <h3>Total Quantity of Opioid Drugs Prescriptions:</h3>
-    <h5>   Drug Name, Quantity</h5>
-
-    <div class ="scrollbar">
-        {% for x in results3 %}
-                <div>
-                    <h6 class="card">{{x}}</h6>                    
-                </div>
-        {% endfor %}
+    <h3 align="center" style= "font-family:Montserrat;">Total Quantity of Opioid Drug Prescriptions:</h3>
+    <h5 align="center" style= "font-family:Montserrat;">(Drug Name, Quantity)</h5>
+    <div align="center">
+        <div class ="scrollbar">
+            {% for x in results3 %}
+                    <div>
+                        <h6 class="card">{{x}}</h6>                    
+                    </div>
+            {% endfor %}
+        </div>
     </div>
     <hr style="width:100%;text-align:center;background-color:black;height:1px;">
-
+    <br>
 {% endblock %}

@@ -125,4 +125,5 @@ div.scrollbar {
   height: 150px;
   width: 400px;
   overflow: auto;
+  font-family: 'Lato', sans-serif;
 }

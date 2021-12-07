@@ -12,7 +12,8 @@
             <div class="header-content-container-left"> 
                 <h1 class="header-title">Opioid Crisis Real-Time Data</h1>
                 <p class="header-subtitle">Dig into the epidemic with the first accessible database </p> 
-                <button type="button" class="btn btn-primary my-2 my-sm-0">View Analysis</button>  
+                <button type="button" class="btn btn-primary my-2 my-sm-0" onclick="window.location.href='{% url 'analysis1' %}'">View Prescription Analysis</button>  
+                <button type="button" class="btn btn-primary my-2 my-sm-0" onclick="window.location.href='{% url 'analysis2' %}'">View Mortality Analysis</button>  
             </div> 
         </div>
         <div class="header-container"> 
