@@ -120,3 +120,9 @@ margin:10px;
 }
 }
 
+div.scrollbar {
+  background-color: aliceblue;
+  height: 150px;
+  width: 400px;
+  overflow: auto;
+}
