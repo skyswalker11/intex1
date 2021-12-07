@@ -64,6 +64,40 @@ margin:10px;
   margin-bottom: 10px;
 }
 
+/*header-stuff*/ 
+.header-container{
+  position: relative; 
+}
+
+.header-content-container-left{
+  position: absolute;
+  top: 40%;
+  left: 10%; 
+}
+
+.header-content-container-right{
+  position: absolute;
+  top: 40%;
+  right: 10%; 
+}
+
+.header-title{
+  font-family: 'Montserrat';
+  color: white;
+}
+
+.header-subtitle{
+  font-size: larger;
+  color: white;
+}
+
+.header-button{
+  background-color: #007bff;
+  border-color: #007bff;
+  font-weight: bolder;
+  color: white;
+  padding: 12px;
+}
 
 /* Mobile Styles */
 @media only screen and (max-width: 400px) {
@@ -85,3 +119,4 @@ margin:10px;
   width: 50%
 }
 }
+
