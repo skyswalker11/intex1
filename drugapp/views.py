@@ -8,10 +8,11 @@ import psycopg2
 def indexPageView(request) :
     return render(request, 'drugapp/index.html')
 
+# Queries Database
 def analysis1PageView(request) :
     
     con = psycopg2.connect(database='intex_operational', user='postgres',
-        password='bionicle25')
+        password='admin')
 
     with con:
         cur = con.cursor()
@@ -51,7 +52,7 @@ def analysis1PageView(request) :
                         """)
         
         results3 = cur.fetchall()
-    
+   
     context = {
             "results" : results,
             "results2" : results2,
@@ -59,10 +60,11 @@ def analysis1PageView(request) :
         } 
     return render(request, 'drugapp/analysis1.html', context)
 
+# Queries Database
 def analysis2PageView(request) :
     
     con = psycopg2.connect(database='intex_operational', user='postgres',
-        password='bionicle25')
+        password='admin')
 
     with con:
         cur = con.cursor()
@@ -102,7 +104,7 @@ def analysis2PageView(request) :
                         """)
         
         results3B = cur.fetchall()
-    
+  
     context = {
             "resultsB" : resultsB,
             "results2B" : results2B,
@@ -255,6 +257,7 @@ def prescriberdetailsPageView(request,npi) :
 def createprescriberPageView(request) :
 
     if request.method == 'POST' : 
+<<<<<<< HEAD
         npi = request.POST['npi']
         fname = request.POST['fname']
         lname = request.POST['lname']
@@ -277,6 +280,42 @@ def createprescriberPageView(request) :
         instance.save()
 
         return prescriberdetailsPageView(request,npi)
+=======
+        #create new prescriber
+        new_prescriber = Prescriber('123','joe','smith','m','UT','MD','Family','T','1234')
+        #store data from form to new object
+        new_prescriber.npi = request.POST.get('npi')
+                
+        new_prescriber.first_name = request.POST.get('fname')
+
+        new_prescriber.last_name = request.POST.get('lname')
+
+        new_prescriber.gender = request.POST.get('gender')
+
+        new_prescriber.state = request.POST.get('state_abbrev')
+
+        new_prescriber.credentials = request.POST.get('credentials')
+
+        new_prescriber.specialty = request.POST.get('specialty')
+
+        new_prescriber.is_opioid_prescriber = request.POST.get('opiate')
+
+        new_prescriber.total_prescriptions = request.POST.get('prescriptions')
+        
+        new_state = State.objects.get(state_abbrev = request.POST.get('state'))
+    
+        new_prescriber.state = new_state
+
+        new_prescriber.save()
+
+        data = new_prescriber.npi
+
+        states = State.objects.all()
+        context = {
+            "prescribers" : data,
+        }
+        return prescriberdetailsPageView(request, data)
+>>>>>>> bf188e7e25384fde00811b076ae3c5e9364deb08
     
     else:
         states = State.objects.all()
