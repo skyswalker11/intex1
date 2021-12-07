@@ -10,7 +10,7 @@ class State(models.Model):
     death_count = models.IntegerField(default=0)
 
     class Meta:
-        db_table = "pd_state"
+        db_table = "pd_state_data"
 
     def __str__(self):
         return (self.state)

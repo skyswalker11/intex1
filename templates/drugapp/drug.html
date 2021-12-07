@@ -8,15 +8,15 @@
         <form class="form-inline my-2 my-lg-0" method="post" action="{% url 'drug' %}">
             {% csrf_token %}
             <input class="form-control mr-sm-2 space" id="search" name="search" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0 space" type="submit">Search</button>
+            <button class="btn btn-primary my-2 my-sm-0 space" type="submit">Search</button>
 
             <!-- Radio button group-->
             <input class= "space" type="radio" id="all" name="filter" value="all" checked>
-            <label for="all">All Substances</label><br>
+            <label class="space" for="all">All Substances</label><br>
             <input class="space" type="radio" id="non_opioid" name="filter" value="non_opioid">
-            <label for="non_opioid">Non-Opioid</label><br>
+            <label class="space" for="non_opioid">Non-Opioid</label><br>
             <input class="space" type="radio" id="opioid" name="filter" value="opioid">
-            <label for="opioid">Opioid</label> 
+            <label class="space" for="opioid">Opioid</label> 
         </form>
     </div>
 
