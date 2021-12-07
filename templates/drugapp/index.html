@@ -12,7 +12,7 @@
             <div class="header-content-container-left"> 
                 <h1 class="header-title">Opioid Crisis Real-Time Data</h1>
                 <p class="header-subtitle">Dig into the epidemic with the first accessible database </p> 
-                <button type="button" class="header-button">View Analysis</button>  
+                <button type="button" class="btn btn-primary my-2 my-sm-0">View Analysis</button>  
             </div> 
         </div>
         <div class="header-container"> 
@@ -20,7 +20,7 @@
             <div class="header-content-container-right"> 
                 <h1 class="header-title">See Opiate Prescribers</h1>
                 <p class="header-subtitle">Find out who is prescribing opiates by volume</p> 
-                <button type="button" class="header-button">View Prescribers</button>  
+                <button type="button" class="btn btn-primary my-2 my-sm-0" onclick="window.location.href='{% url 'prescriber' %}'">View Prescribers</button>  
             </div> 
         </div>  
         <div class="header-container"> 
@@ -28,7 +28,7 @@
             <div class="header-content-container-left"> 
                 <h1 class="header-title">See Popular Opiates</h1>
                 <p class="header-subtitle">Learn what opiates are among the most prescribed</p> 
-                <button type="button" class="header-button">View Substances</button>  
+                <button type="button" class="btn btn-primary my-2 my-sm-0" onclick="window.location.href='{% url 'drug' %}'">View Substances</button>  
             </div> 
         </div>     
     </body>

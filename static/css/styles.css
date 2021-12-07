@@ -16,13 +16,13 @@
 
 /* Cards */
 .card {
-  /* Add shadows to create the "card" effect */
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  border-radius: 5px; /* 5px rounded corners */
-  margin:10px;
-  }
-  
+/* Add shadows to create the "card" effect */
+box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+transition: 0.3s;
+border-radius: 5px; /* 5px rounded corners */
+margin:10px;
+}
+
 /* On mouse-over, add a deeper shadow */
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
@@ -55,17 +55,49 @@
 }
 
 .space {
-  margin-left:5px;
+  margin-right:5px;
 }
 
-.masthead {
-  position: fixed;
-  width: 700px;
-  top: 0;
-  background-color: white;
-  border-bottom: 2px solid rgb(220,220,220);
+.detail_header {
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
+/*header-stuff*/ 
+.header-container{
+  position: relative; 
+}
+
+.header-content-container-left{
+  position: absolute;
+  top: 40%;
+  left: 10%; 
+}
+
+.header-content-container-right{
+  position: absolute;
+  top: 40%;
+  right: 10%; 
+}
+
+.header-title{
+  font-family: 'Montserrat';
+  color: white;
+}
+
+.header-subtitle{
+  font-size: larger;
+  color: white;
+}
+
+.header-button{
+  background-color: #1d94d8;
+  border-color: #1d94d8;
+  font-weight: bolder;
+  color: white;
+  padding: 12px;
+}
 
 /* Mobile Styles */
 @media only screen and (max-width: 400px) {
@@ -86,4 +118,11 @@
 .center{
   width: 50%
 }
+}
+
+div.scrollbar {
+  background-color: aliceblue;
+  height: 150px;
+  width: 400px;
+  overflow: auto;
 }

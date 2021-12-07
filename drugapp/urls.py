@@ -1,8 +1,11 @@
 from django.urls import path
 from .views import indexPageView, drugPageView,drugdetailsPageView\
-, prescriberPageView, editprescriberPageView, prescriberdetailsPageView
+, prescriberPageView, editprescriberPageView, prescriberdetailsPageView\
+, analysis1PageView, analysis2PageView
 
 urlpatterns = [
+    path("analysis1/", analysis1PageView, name="analysis1"),
+    path("analysis2/", analysis2PageView, name="analysis2"),
     path("", indexPageView, name="index"),
     path("drug/", drugPageView, name="drug"),
     path("drugdetails/<int:drug_id>", drugdetailsPageView, name="drug_details"),
