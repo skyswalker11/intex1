@@ -257,7 +257,7 @@ def prescriberdetailsPageView(request,npi) :
 def createprescriberPageView(request) :
 
     if request.method == 'POST' : 
-<<<<<<< HEAD
+
         npi = request.POST['npi']
         fname = request.POST['fname']
         lname = request.POST['lname']
@@ -280,7 +280,7 @@ def createprescriberPageView(request) :
         instance.save()
 
         return prescriberdetailsPageView(request,npi)
-=======
+
         #create new prescriber
         new_prescriber = Prescriber('123','joe','smith','m','UT','MD','Family','T','1234')
         #store data from form to new object
@@ -315,7 +315,7 @@ def createprescriberPageView(request) :
             "prescribers" : data,
         }
         return prescriberdetailsPageView(request, data)
->>>>>>> bf188e7e25384fde00811b076ae3c5e9364deb08
+
     
     else:
         states = State.objects.all()

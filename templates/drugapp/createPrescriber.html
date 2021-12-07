@@ -14,37 +14,29 @@
         <label for="lname"><b>Last Name:</b></label>
         <input type="text" id="lname" name="lname"><br>
         
-<<<<<<< HEAD
-        <input class="space" type="radio" id="female" name="gender" value="F" selected>
-        <label class="space" for="female"><b>Female</b></label><br>
-        <input class="space" type="radio" id="male" name="gender" value="M">
-        <label class="space" for="male"><b>Male</b></label><br>
-=======
+
+
         <input class="space" type="radio" id="F" name="gender" value="F" selected>
         <label class="space" for="F"><b>Female</b></label><br>
         <input class="space" type="radio" id="M" name="gender" value="M">
         <label class="space" for="M"><b>Male</b></label><br>
->>>>>>> bf188e7e25384fde00811b076ae3c5e9364deb08
-
-        
+  
         <label class="space" for="state">State/Territory:</label>
         <select class="space" name="state" id="state">
             {% for state in states %}
-<<<<<<< HEAD
             <option value={{state.state_abbrev}}>{{state.state}}</option>
             {% endfor %}
         </select><br>
 
         <label for="credendtials"><b>Credentials:</b></label>
         <input type="text" id="credendtials" name="credendtials"><br>
-=======
+
                 <option value="{{state.state_abbrev}}">{{state.state}}</option>
             {% endfor %}
         </select><br>
 
         <label for="credentials"><b>Credentials:</b></label>
         <input type="text" id="credentials" name="credentials"><br>
->>>>>>> bf188e7e25384fde00811b076ae3c5e9364deb08
         <label for="specialty"><b>Specialty:</b></label>
         <input type="text" id="specialty" name="specialty"><br>
 
