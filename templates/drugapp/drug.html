@@ -8,7 +8,7 @@
         <form class="form-inline my-2 my-lg-0" method="post" action="{% url 'drug' %}">
             {% csrf_token %}
             <input class="form-control mr-sm-2 space" id="search" name="search" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0 space" type="submit">Search</button>
+            <button class="btn btn-primary my-2 my-sm-0 space" type="submit">Search</button>
 
             <!-- Radio button group-->
             <input class= "space" type="radio" id="all" name="filter" value="all" checked>
